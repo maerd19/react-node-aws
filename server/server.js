@@ -1,12 +1,10 @@
 const express = require('express');
-
 const app = express()
+// import routes
+const authRoutes = require('./routes/auth')
 
-app.get('/api/register', (req, res) => {
-    res.json({
-        data: 'you hit register endpoinht'
-    })
-})
+// middlewares
+app.use('/api', authRoutes)
 
 const port = process.env.PORT || 8000
 app.listen(port, () => {
