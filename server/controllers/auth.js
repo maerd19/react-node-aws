@@ -1,5 +1,3 @@
 exports.register = (req, res) => {
-    res.json({
-        data: 'you hit register endpoint using controllers'
-    })
-}
+    console.log('Register Controller', req.body);
+};
