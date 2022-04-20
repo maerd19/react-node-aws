@@ -56,7 +56,7 @@ userSchema.virtual('password')
         return this._password
     })
 // methods > authenticate, encryptPassword, makeSalt
-userSchema.methods() = {
+userSchema.methods = {
     authenticate: function(plainText) {
         return this.encryptPassword(plainText) === this.hashed_password
     },
