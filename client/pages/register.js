@@ -26,16 +26,16 @@ const Register = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async e => {
         e.preventDefault()
         setState({ ...state, buttonText: 'Registering' })
-        // console.table({ name, email, password });
-        axios.post(`http://localhost:8000/api/register`, {
-            name,
-            email,
-            password,
-        })
-        .then(response => {
+        try {
+            const response = await axios.post(`http://localhost:8000/api/register`, {
+                name,
+                email,
+                password,
+            })
+            console.log(response);
             setState({
                 ...state,
                 name: '',
@@ -44,10 +44,10 @@ const Register = () => {
                 buttonText: 'Submitted',
                 success: response.data.message
             })
-        })
-        .catch(error => {
-            setState({...state, buttonText: 'Register', error: error.response.data.error})
-        });
+        } catch (error) {
+            console.log(error)
+            setState({...state, buttonText: 'Register', error: error.response.data.error})   
+        }            
     }
 
     const registerForm = () => (
